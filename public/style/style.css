@@ -1,0 +1,634 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+/* --- CSS Variables & Reset --- */
+:root {
+    --dark-navy: #0a192f;
+    --light-navy: #112240;
+    --lightest-navy: #233554;
+    --slate: #8892b0;
+    --light-slate: #a8b2d1;
+    --lightest-slate: #ccd6f6;
+    --white: #e6f1ff;
+    --accent-blue: #64ffda; /* Biru terang buat aksen */
+    --font-mono: 'Roboto Mono', monospace;
+    --header-height: 70px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-mono);
+    background-color: var(--dark-navy);
+    color: var(--slate);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-blue);
+}
+
+/* --- Login Page Styles --- */
+.login-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-box {
+    background-color: var(--light-navy);
+    padding: 40px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid var(--lightest-navy);
+}
+
+.login-title {
+    color: var(--accent-blue);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    color: var(--slate);
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--light-slate);
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--dark-navy);
+    border: 1px solid var(--lightest-navy);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1);
+}
+
+.btn.btn-full {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.form-message-error {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-message-error-small {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* --- Header / Navbar --- */
+.header {
+    height: var(--header-height);
+    background-color: rgba(10, 25, 47, 0.85);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    z-index: 100;
+    border-bottom: 1px solid var(--lightest-navy);
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    color: var(--accent-blue);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--accent-blue);
+    border-radius: 3px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--lightest-slate);
+}
+
+.profile-icon {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: var(--lightest-navy);
+    color: var(--accent-blue);
+    display: grid;
+    place-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    border: 2px solid var(--accent-blue);
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--light-navy);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 200;
+    padding-top: var(--header-height);
+    border-right: 1px solid var(--lightest-navy);
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.sidebar-nav a {
+    padding: 15px 0;
+    color: var(--light-slate);
+    font-size: 16px;
+    transition: color 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-nav a:hover {
+    color: var(--accent-blue);
+    background-color: rgba(100, 255, 218, 0.05);
+}
+
+.sidebar-nav a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px; 
+    background-color: var(--accent-blue);
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-in-out;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    padding: 10px 15px;
+    height: 70px; 
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--slate);
+    font-size: 36px;  
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;   
+    padding: 0;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--accent-blue);
+    transform: rotate(90deg); 
+}
+
+/* --- Main Content --- */
+.main-wrapper { 
+    display: flex;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-wrapper.sidebar-active { 
+    margin-left: 250px;
+}
+
+
+.main-content {
+    padding-top: var(--header-height);
+    transition: filter 0.3s ease-in-out;
+    padding-left: 25px;
+}
+
+.main-content.sidebar-blurred {
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.container {
+    padding: 40px 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container p { 
+    margin-bottom: 40px; 
+    max-width: 600px;
+    line-height: 1.6; 
+}
+
+.container h1 {
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding-top: 20px; 
+}
+
+.course-card {
+    background-color: var(--light-navy);
+    border-radius: 5px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--lightest-navy);
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+}
+
+.card-header {
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.card-body {
+    color: var(--light-slate);
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--accent-blue); 
+    color: var(--dark-navy);              
+    border: 1px solid var(--accent-blue);
+    border-radius: 4px;
+    font-weight: 700;                     
+    transition: background-color 0.2s, color 0.2s; 
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: var(--accent-blue);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .course-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .course-grid {
+        grid-template-columns: 1fr;
+        padding: 0 15px; 
+    }
+    .container {
+        padding: 20px 15px;
+    }
+}
+
+/* --- Support Page & Modal Styles --- */
+
+/* Styling untuk halaman support */
+.support-section {
+    padding: 20px;
+    background-color: var(--light-navy); 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    color: var(--lightest-slate); 
+}
+
+.support-section h2 {
+    color: var(--accent-blue); 
+    margin-bottom: 15px;
+}
+
+.support-section p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--dark-navy); 
+    border-left: 5px solid var(--accent-blue);
+    border-radius: 4px;
+}
+
+.faq-item h3 {
+    color: var(--white); 
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    color: var(--slate);
+}
+
+.support-contact-info {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.support-contact-info li {
+    margin-bottom: 10px;
+}
+
+.support-contact-info li strong {
+    color: var(--accent-blue); 
+}
+
+.contact-button {
+    background-color: var(--accent-blue); 
+    color: var(--dark-navy); 
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    font-weight: 700; 
+}
+
+.contact-button:hover {
+    background-color: transparent; 
+    color: var(--accent-blue);
+}
+
+.send-button {
+    background-color: var(--accent-blue); 
+    color: var(--dark-navy); 
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    font-weight: 700; 
+}
+
+.send-button:hover {
+    background-color: transparent; 
+    color: var(--accent-blue);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 25, 47, 0.7); /* Pake warna tema + transparan */
+    backdrop-filter: blur(5px);
+    display: none; /* diubah oleh JS jadi flex */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--light-navy); /* Pake warna tema */
+    color: var(--light-slate); /* Pake warna tema */
+    padding: 30px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    border: 1px solid var(--lightest-navy);
+    font-family: var(--font-mono); /* Pake font tema */
+    position: relative;
+    animation: pop 0.3s ease-out;
+}
+
+@keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 {
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 25px;
+    color: var(--slate);
+}
+
+.modal-content .close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--slate);
+    transition: color 0.2s;
+}
+
+.modal-content .close-button:hover {
+    color: var(--accent-blue);
+}
+
+.modal-content textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--dark-navy);
+    border: 1px solid var(--lightest-navy);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    resize: vertical;
+    min-height: 120px;
+    margin-bottom: 20px;
+}
+
+.modal-content textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1);
+}
+
+/* Styling for Profile Page */
+.profile-container {
+    background-color: #2c2c38; /* Warna sedikit lebih terang dari body */
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 2rem auto; /* Tengahin cardnya */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #444;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-icon-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #00bcd4; /* Warna ikon sama kayak di dashboard */
+    color: #1a1a24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-right: 1.5rem;
+}
+
+.profile-header h2 {
+    font-size: 2rem;
+    margin: 0;
+    color: #e0e0e0;
+}
+
+.profile-body h3 {
+    color: #aaa;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.bio-box {
+    background-color: #1a1a24; /* Warna sama kayak body */
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 1rem;
+    min-height: 100px;
+    white-space: pre-wrap; /* Biar enter di bio tetep keliatan */
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.profile-footer {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.feedback-item {
+    border: 1px solid #444; 
+    padding: 1rem; 
+    margin-bottom: 1rem; 
+    border-radius: 5px; 
+}
+
+.feedback-message { 
+    background-color: #2c2c38; 
+    padding: 1rem; 
+    margin-top: 0.5rem; 
+    border-radius: 3px; 
+}
+
+.success-message,
+.error-message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid;
+    font-weight: 500;
+    text-align: center;
+}
+
+.success-message {
+    color: #a7e0a7;
+    background-color: rgba(46, 139, 87, 0.25); 
+    border-color: #2e8b57;
+}
+
+.error-message {
+    color: #f8b4b4;
+    background-color: rgba(220, 20, 60, 0.25);
+    border-color: #dc143c;
+}

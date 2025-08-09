@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "2222:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=inipasswordaman
+      - DB_NAME=vul_db
+    depends_on:
+      - db
+    restart: always
+  db:
+    image: mariadb:10.6
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: inipasswordaman
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
